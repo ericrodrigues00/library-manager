@@ -352,6 +352,11 @@
 }
 
 /* ===== Pagination ===== */
+
+.page-numbers{
+  margin: 10px;
+}
+
 .notifications-pagination {
   display: flex;
   justify-content: center;

@@ -376,4 +376,31 @@ input::placeholder {
     --font-size-3xl: 1.5rem;
     --font-size-2xl: 1.25rem;
   }
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background-color: transparent;
+  border: 1px solid var(--accent-blue);
+  color: var(--accent-blue);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.back-button:hover {
+  background-color: rgba(115, 159, 217, 0.1);
+  transform: translateY(-2px);
+}
+
+.back-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 } 

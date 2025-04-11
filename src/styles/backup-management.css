@@ -1,0 +1,194 @@
+.backup-management-container {
+  padding: var(--space-md);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.backup-content {
+  display: grid;
+  gap: var(--space-xl);
+  margin-top: var(--space-xl);
+}
+
+/* Status Card Styles */
+.backup-status {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.status-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-md);
+}
+
+.status-info {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.status-info p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.status-info strong {
+  color: var(--text-primary);
+  margin-right: var(--space-sm);
+}
+
+.status-badge {
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.status-badge.success {
+  background-color: rgba(81, 207, 102, 0.1);
+  color: var(--success);
+}
+
+.status-badge.failure {
+  background-color: rgba(255, 107, 107, 0.1);
+  color: var(--error);
+}
+
+/* Backup Button Styles */
+.btn-backup {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
+  background-color: var(--accent-blue);
+  color: var(--text-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-backup:hover:not(:disabled) {
+  background-color: #638fc0;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-backup:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Schedule Form Styles */
+.backup-schedule {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.schedule-form {
+  display: grid;
+  gap: var(--space-lg);
+  margin-top: var(--space-md);
+}
+
+.form-group {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.form-group label {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.form-group select,
+.form-group input {
+  padding: var(--space-sm);
+  background-color: var(--bg-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+}
+
+.btn-schedule {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
+  background-color: var(--accent-pink);
+  color: var(--text-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-schedule:hover {
+  background-color: #c8909f;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* History Table Styles */
+.backup-history {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.history-table {
+  margin-top: var(--space-md);
+  overflow-x: auto;
+}
+
+.history-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.history-table th,
+.history-table td {
+  padding: var(--space-sm);
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.history-table th {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+}
+
+.history-table td {
+  color: var(--text-primary);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .status-card {
+    flex-direction: column;
+    gap: var(--space-md);
+    align-items: stretch;
+  }
+
+  .btn-backup {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .schedule-form {
+    grid-template-columns: 1fr;
+  }
+} 

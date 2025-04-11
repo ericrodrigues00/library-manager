@@ -18,6 +18,9 @@ import AdminDashboard from './screens/admin-dashboard';
 import Reports from './screens/reports';
 import AccountSettings from './screens/account-settings';
 import LibraryManagement from './screens/library-management';
+import BackupManagement from './screens/backup-management';
+import BorrowBooks from './screens/borrow-books';
+import ReturnBooks from './screens/return-books';
 
 // Import styles
 import './styles/global.css';
@@ -57,6 +60,33 @@ function App() {
               element={
                 <ProtectedRoute allowedRoles={['admin', 'librarian']}>
                   <LibraryManagement />
+                </ProtectedRoute>
+              }
+            />
+            
+            <Route
+              path="/backup-management"
+              element={
+                <ProtectedRoute allowedRoles={['admin']}>
+                  <BackupManagement />
+                </ProtectedRoute>
+              }
+            />
+            
+            <Route
+              path="/borrow-books"
+              element={
+                <ProtectedRoute>
+                  <BorrowBooks />
+                </ProtectedRoute>
+              }
+            />
+            
+            <Route
+              path="/return-books"
+              element={
+                <ProtectedRoute>
+                  <ReturnBooks />
                 </ProtectedRoute>
               }
             />

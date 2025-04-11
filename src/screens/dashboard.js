@@ -9,13 +9,15 @@ const Dashboard = () => {
       title: 'Empréstimos Ativos',
       value: '12',
       description: 'Materiais emprestados',
-      icon: '📚'
+      icon: '📚',
+      link: '/my-loans'
     },
     {
       title: 'Reservas',
       value: '5',
       description: 'Aguardando disponibilidade',
-      icon: '⏳'
+      icon: '⏳',
+      link: '/my-reservations'
     },
     {
       title: 'Multas',
@@ -27,7 +29,8 @@ const Dashboard = () => {
       title: 'Notificações',
       value: '3',
       description: 'Mensagens não lidas',
-      icon: '🔔'
+      icon: '🔔',
+      link: '/notifications'
     }
   ];
 
@@ -59,41 +62,63 @@ const Dashboard = () => {
       link: '/search'
     },
     {
-      text: 'Meus Empréstimos',
-      icon: '📚',
-      link: '/my-loans'
+      text: 'Emprestar Livros',
+      icon: '✅',
+      link: '/borrow-books'
     },
     {
-      text: 'Minhas Reservas',
-      icon: '⏳',
-      link: '/my-reservations'
+      text: 'Devolver Livros',
+      icon: '❌',
+      link: '/return-books'
     },
     {
-      text: 'Notificações',
-      icon: '🔔',
-      link: '/notifications'
+      text: 'Configurações da Conta',
+      icon: '⚙️',
+      link: '/account-settings'
     }
   ];
+
+  const handleLogout = () => {
+    // Implement the logout logic here
+    console.log('Logout clicked');
+  };
 
   return (
     <div className="dashboard">
       <div className="dashboard-content">
         <header className="dashboard-header">
-          <div>
-            <h1 className="dashboard-title">Bem-vindo(a)!</h1>
-            <p className="dashboard-subtitle">Aqui está um resumo da sua atividade na biblioteca</p>
+          <h1>Painel de Controle</h1>
+          <div className="header-actions">
+            <div className="logout-container">
+              <button className="logout-button" onClick={handleLogout}>
+                <i className="fas fa-sign-out-alt"></i> SAIR
+              </button>
+            </div>
           </div>
         </header>
 
         <section className="stats-grid">
           {stats.map((stat, index) => (
             <div key={index} className="stat-card">
-              <div className="stat-header">
-                <span className="stat-title">{stat.title}</span>
-                <span className="stat-icon">{stat.icon}</span>
-              </div>
-              <div className="stat-value">{stat.value}</div>
-              <div className="stat-description">{stat.description}</div>
+              {stat.link ? (
+                <Link to={stat.link} className="stat-link">
+                  <div className="stat-header">
+                    <span className="stat-title">{stat.title}</span>
+                    <span className="stat-icon">{stat.icon}</span>
+                  </div>
+                  <div className="stat-value">{stat.value}</div>
+                  <div className="stat-description">{stat.description}</div>
+                </Link>
+              ) : (
+                <>
+                  <div className="stat-header">
+                    <span className="stat-title">{stat.title}</span>
+                    <span className="stat-icon">{stat.icon}</span>
+                  </div>
+                  <div className="stat-value">{stat.value}</div>
+                  <div className="stat-description">{stat.description}</div>
+                </>
+              )}
             </div>
           ))}
         </section>
@@ -124,6 +149,10 @@ const Dashboard = () => {
             ))}
           </div>
         </section>
+
+       
+
+       
       </div>
     </div>
   );

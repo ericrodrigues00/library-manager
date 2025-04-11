@@ -1,27 +1,84 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { books } from '../data/books';
+import '../styles/global.css';
+import '../styles/material-details.css';
 
 function MaterialDetails() {
   const { id } = useParams();
-  const [material, setMaterial] = useState(null);
+  const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isLoanedByUser, setIsLoanedByUser] = useState(false);
+  const [isReservedByUser, setIsReservedByUser] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    // TODO: Fetch material details using the id
-    console.log('Fetching material details for ID:', id);
-    setLoading(false);
+    // Simulate API call to fetch book details
+    const fetchBook = () => {
+      const foundBook = books.find(b => b.id === parseInt(id));
+      setBook(foundBook);
+      // Simulate checking if the book is loaned or reserved by the current user
+      setIsLoanedByUser(false); // This would come from the backend in a real app
+      setIsReservedByUser(false); // This would come from the backend in a real app
+      setLoading(false);
+    };
+
+    fetchBook();
   }, [id]);
 
+  const handleLoan = () => {
+    if (book.available) {
+      // Simulate API call to loan the book
+      setBook(prev => ({ ...prev, available: false }));
+      setIsLoanedByUser(true);
+      setSuccessMessage('Livro emprestado com sucesso!');
+      setTimeout(() => setSuccessMessage(''), 3000);
+    }
+  };
+
   const handleReserve = () => {
-    // TODO: Implement reservation logic
-    console.log('Reserving material:', id);
+    if (!book.available) {
+      if (isReservedByUser) {
+        // Cancel reservation
+        setIsReservedByUser(false);
+        setSuccessMessage('Reserva cancelada com sucesso!');
+      } else {
+        // Make reservation
+        setIsReservedByUser(true);
+        setSuccessMessage('Livro reservado com sucesso!');
+      }
+      setTimeout(() => setSuccessMessage(''), 3000);
+    }
+  };
+
+  const handleReturn = () => {
+    if (isLoanedByUser) {
+      // Simulate API call to return the book
+      setBook(prev => ({ ...prev, available: true }));
+      setIsLoanedByUser(false);
+      setSuccessMessage('Livro devolvido com sucesso!');
+      setTimeout(() => setSuccessMessage(''), 3000);
+    }
+  };
+
+  const getBookStatus = () => {
+    if (isLoanedByUser) return 'borrowed';
+    if (isReservedByUser) return 'reserved';
+    return book.available ? 'available' : 'borrowed';
+  };
+
+  const getStatusText = () => {
+    if (isLoanedByUser) return 'Emprestado';
+    if (isReservedByUser) return 'Reservado';
+    return book.available ? 'Disponível' : 'Emprestado';
   };
 
   if (loading) {
     return <div className="loading">Carregando...</div>;
   }
 
-  if (!material) {
+  if (!book) {
     return <div className="error">Material não encontrado</div>;
   }
 
@@ -35,64 +92,69 @@ function MaterialDetails() {
       <main className="material-content">
         <section className="material-info">
           <div className="material-header">
-            <h2>{material?.title || 'Título do Material'}</h2>
-            <span className="material-type">{material?.type || 'Tipo'}</span>
+            <h2>{book.title}</h2>
+            <span className="material-type">{book.category}</span>
           </div>
 
           <div className="material-details">
             <div className="detail-group">
               <label>Autor:</label>
-              <span>{material?.author || 'Autor'}</span>
-            </div>
-            <div className="detail-group">
-              <label>Editora:</label>
-              <span>{material?.publisher || 'Editora'}</span>
+              <span>{book.author}</span>
             </div>
             <div className="detail-group">
               <label>Ano de Publicação:</label>
-              <span>{material?.year || 'Ano'}</span>
+              <span>{book.publishYear}</span>
             </div>
             <div className="detail-group">
               <label>ISBN:</label>
-              <span>{material?.isbn || 'ISBN'}</span>
+              <span>{book.isbn}</span>
             </div>
           </div>
 
           <div className="material-status">
             <h3>Status</h3>
             <div className="status-info">
-              <span className={`status-badge ${material?.status || 'available'}`}>
-                {material?.status || 'Disponível'}
+              <span className={`status-badge ${getBookStatus()}`}>
+                {getStatusText()}
               </span>
-              <p className="status-details">
-                {material?.statusDetails || 'Status details'}
-              </p>
             </div>
           </div>
 
           <div className="material-actions">
-            <button 
-              className="btn-reserve"
-              onClick={handleReserve}
-              disabled={material?.status !== 'available'}
-            >
-              Reservar Material
-            </button>
+            {book.available ? (
+              <button 
+                className="btn-loan"
+                onClick={handleLoan}
+              >
+                Emprestar
+              </button>
+            ) : isLoanedByUser ? (
+              <button 
+                className="btn-return"
+                onClick={handleReturn}
+              >
+                Devolver
+              </button>
+            ) : (
+              <button 
+                className={`btn-reserve ${isReservedByUser ? 'btn-cancel' : ''}`}
+                onClick={handleReserve}
+              >
+                {isReservedByUser ? 'Cancelar Reserva' : 'Reservar'}
+              </button>
+            )}
           </div>
+
+          {successMessage && (
+            <div className="success-message">
+              {successMessage}
+            </div>
+          )}
         </section>
 
         <section className="material-description">
           <h3>Descrição</h3>
-          <p>{material?.description || 'Descrição do material'}</p>
-        </section>
-
-        <section className="material-availability">
-          <h3>Disponibilidade</h3>
-          <div className="availability-info">
-            <p>Total de Exemplares: {material?.totalCopies || 0}</p>
-            <p>Exemplares Disponíveis: {material?.availableCopies || 0}</p>
-            <p>Próxima Disponibilidade: {material?.nextAvailability || 'N/A'}</p>
-          </div>
+          <p>{book.description}</p>
         </section>
       </main>
     </div>

@@ -69,9 +69,13 @@ function LoanHistory() {
     <div className="loan-history-container">
       <header className="history-header">
         <h1>Histórico de Empréstimos</h1>
-        <nav className="breadcrumb">
-          <Link to="/dashboard">Painel</Link> {'>'} Histórico de Empréstimos
-        </nav>
+        <div className="header-actions">
+          <div className="back-container">
+            <Link to="/dashboard" className="back-button">
+              <i className="fas fa-arrow-left"></i> VOLTAR
+            </Link>
+          </div>
+        </div>
       </header>
 
       <main className="history-content">

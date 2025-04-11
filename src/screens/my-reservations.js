@@ -78,9 +78,13 @@ function MyReservations() {
       <div className="my-reservations-container">
         <header className="reservations-header">
           <h1>Minhas Reservas</h1>
-          <nav className="breadcrumb">
-            <Link to="/dashboard">Painel</Link> {'>'} Minhas Reservas
-          </nav>
+          <div className="header-actions">
+            <div className="back-container">
+              <Link to="/dashboard" className="back-button">
+                <i className="fas fa-arrow-left"></i> VOLTAR
+              </Link>
+            </div>
+          </div>
         </header>
         
         <div className="empty-state">
@@ -99,9 +103,13 @@ function MyReservations() {
     <div className="my-reservations-container">
       <header className="reservations-header">
         <h1>Minhas Reservas</h1>
-        <nav className="breadcrumb">
-          <Link to="/dashboard">Painel</Link> {'>'} Minhas Reservas
-        </nav>
+        <div className="header-actions">
+          <div className="back-container">
+            <Link to="/dashboard" className="back-button">
+              <i className="fas fa-arrow-left"></i> VOLTAR
+            </Link>
+          </div>
+        </div>
       </header>
 
       <main className="reservations-content">

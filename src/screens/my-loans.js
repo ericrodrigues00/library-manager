@@ -53,9 +53,13 @@ function MyLoans() {
     <div className="my-loans-container">
       <header className="loans-header">
         <h1>Meus Empréstimos</h1>
-        <nav className="breadcrumb">
-          <Link to="/dashboard">Painel</Link> {'>'} Meus Empréstimos
-        </nav>
+        <div className="header-actions">
+          <div className="back-container">
+            <Link to="/dashboard" className="back-button">
+              <i className="fas fa-arrow-left"></i> VOLTAR
+            </Link>
+          </div>
+        </div>
       </header>
 
       <main className="loans-content">

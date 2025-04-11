@@ -86,7 +86,7 @@ const AdminDashboard = () => {
               <i className="fas fa-cog"></i>
               Gerenciar Acervo
             </Link>
-            <Link to="/admin/backup" className="action-button">
+            <Link to="/backup-management" className="action-button">
               <i className="fas fa-database"></i>
               Backup do Banco de Dados
             </Link>

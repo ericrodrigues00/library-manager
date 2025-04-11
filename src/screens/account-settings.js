@@ -110,9 +110,13 @@ function AccountSettings() {
     <div className="account-settings-container">
       <header className="settings-header">
         <h1>Configurações da Conta</h1>
-        <nav className="breadcrumb">
-          <Link to="/dashboard">Painel</Link> {'>'} Configurações
-        </nav>
+        <div className="header-actions">
+          <div className="back-container">
+            <Link to="/dashboard" className="back-button">
+              <i className="fas fa-arrow-left"></i> VOLTAR
+            </Link>
+          </div>
+        </div>
       </header>
 
       <main className="settings-content">

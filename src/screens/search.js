@@ -1,16 +1,43 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { books } from '../data/books';
 import '../styles/global.css';
 import '../styles/search.css';
 
 function Search() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [selectedType, setSelectedType] = useState('all');
+  const [selectedStatus, setSelectedStatus] = useState('all');
 
   const handleSearch = (e) => {
     e.preventDefault();
-    // TODO: Implement search logic
-    console.log('Searching for:', searchQuery);
+    
+    const filteredBooks = books.filter(book => {
+      const matchesQuery = searchQuery === '' || 
+        book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        book.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        book.isbn.includes(searchQuery) ||
+        book.description.toLowerCase().includes(searchQuery.toLowerCase());
+      
+      const matchesType = selectedType === 'all' || selectedType === 'book';
+      const matchesStatus = selectedStatus === 'all' || 
+        (selectedStatus === 'available' && book.available) ||
+        (selectedStatus === 'borrowed' && !book.available);
+      
+      return matchesQuery && matchesType && matchesStatus;
+    });
+
+    setSearchResults(filteredBooks);
+  };
+
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    if (name === 'type') {
+      setSelectedType(value);
+    } else if (name === 'status') {
+      setSelectedStatus(value);
+    }
   };
 
   return (
@@ -35,14 +62,24 @@ function Search() {
             </div>
 
             <div className="search-filters">
-              <select className="filter-select">
+              <select 
+                className="filter-select"
+                name="type"
+                value={selectedType}
+                onChange={handleFilterChange}
+              >
                 <option value="all">Todos os Tipos</option>
                 <option value="book">Livros</option>
                 <option value="magazine">Revistas</option>
                 <option value="thesis">Teses</option>
               </select>
 
-              <select className="filter-select">
+              <select 
+                className="filter-select"
+                name="status"
+                value={selectedStatus}
+                onChange={handleFilterChange}
+              >
                 <option value="all">Todos os Status</option>
                 <option value="available">Disponível</option>
                 <option value="borrowed">Emprestado</option>
@@ -58,16 +95,16 @@ function Search() {
             {searchResults.length === 0 ? (
               <p className="no-results">Nenhum resultado encontrado</p>
             ) : (
-              searchResults.map((result) => (
-                <Link to={`/material/${result.id}`} key={result.id} className="result-item">
+              searchResults.map((book) => (
+                <Link to={`/material/${book.id}`} key={book.id} className="result-item">
                   <div className="result-info">
-                    <h3>{result.title}</h3>
-                    <p>{result.author}</p>
-                    <span className="material-type">{result.type}</span>
+                    <h3>{book.title}</h3>
+                    <p>{book.author}</p>
+                    <span className="material-type">{book.category}</span>
                   </div>
                   <div className="result-status">
-                    <span className={`status-badge ${result.status}`}>
-                      {result.status}
+                    <span className={`status-badge ${book.available ? 'available' : 'borrowed'}`}>
+                      {book.available ? 'Disponível' : 'Emprestado'}
                     </span>
                   </div>
                 </Link>

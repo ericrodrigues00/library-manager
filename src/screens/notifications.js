@@ -47,8 +47,7 @@ function Notifications() {
   }, []);
 
   const handleMarkAsRead = (notificationId) => {
-    // TODO: Implement mark as read logic
-    console.log('Marking notification as read:', notificationId);
+    // Mark notification as read
     setNotifications(notifications.map(notification => 
       notification.id === notificationId 
         ? { ...notification, read: true } 
@@ -57,15 +56,27 @@ function Notifications() {
   };
 
   const handleMarkAllAsRead = () => {
-    // TODO: Implement mark all as read logic
-    console.log('Marking all notifications as read');
+    // Mark all notifications as read
     setNotifications(notifications.map(notification => ({ ...notification, read: true })));
   };
 
   const handleDelete = (notificationId) => {
-    // TODO: Implement delete logic
-    console.log('Deleting notification:', notificationId);
+    // Delete notification
     setNotifications(notifications.filter(notification => notification.id !== notificationId));
+  };
+
+  const handleNotificationClick = (notification) => {
+    // Mark as read when clicked
+    if (!notification.read) {
+      handleMarkAsRead(notification.id);
+    }
+    
+    // If there's a link, navigate to it
+    if (notification.link) {
+      // In a real app, you would use navigate(notification.link)
+      // For now, we'll just log it
+      console.log('Navigating to:', notification.link);
+    }
   };
 
   if (loading) {
@@ -76,9 +87,13 @@ function Notifications() {
     <div className="notifications-container">
       <header className="notifications-header">
         <h1>Notificações</h1>
-        <nav className="breadcrumb">
-          <Link to="/dashboard">Painel</Link> {'>'} Notificações
-        </nav>
+        <div className="header-actions">
+          <div className="back-container">
+            <Link to="/dashboard" className="back-button">
+              <i className="fas fa-arrow-left"></i> VOLTAR
+            </Link>
+          </div>
+        </div>
       </header>
 
       <main className="notifications-content">
@@ -117,6 +132,7 @@ function Notifications() {
                 <div 
                   key={notification.id} 
                   className={`notification-item ${notification.read ? 'read' : 'unread'}`}
+                  onClick={() => handleNotificationClick(notification)}
                 >
                   <div className="notification-icon">
                     <i className={`icon-${notification.type}`}></i>
@@ -129,12 +145,24 @@ function Notifications() {
                   <div className="notification-actions">
                     <button 
                       className="btn-delete"
-                      onClick={() => handleDelete(notification.id)}
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent triggering the parent click
+                        handleDelete(notification.id);
+                      }}
                     >
                       Excluir
                     </button>
                     {notification.link && (
-                      <Link to={notification.link} className="btn-view">
+                      <Link 
+                        to={notification.link} 
+                        className="btn-view"
+                        onClick={(e) => {
+                          e.stopPropagation(); // Prevent triggering the parent click
+                          if (!notification.read) {
+                            handleMarkAsRead(notification.id);
+                          }
+                        }}
+                      >
                         Ver detalhes
                       </Link>
                     )}

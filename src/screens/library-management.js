@@ -92,13 +92,21 @@ function LibraryManagement() {
     }, 1000);
   };
 
+  const handleLogout = () => {
+    // Implement the logout logic here
+  };
+
   return (
     <div className="library-management-container">
       <header className="management-header">
         <h1>Gerenciamento da Biblioteca</h1>
-        <nav className="breadcrumb">
-          <Link to="/admin">Painel Administrativo</Link> {'>'} Gerenciamento
-        </nav>
+        <div className="header-actions">
+          <div className="back-container">
+            <Link to="/dashboard" className="back-button">
+              <i className="fas fa-arrow-left"></i> VOLTAR
+            </Link>
+          </div>
+        </div>
       </header>
 
       <main className="management-content">

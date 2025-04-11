@@ -96,10 +96,14 @@ function Reports() {
   return (
     <div className="reports-container">
       <header className="reports-header">
-        <h1>Relatórios e Análises</h1>
-        <nav className="breadcrumb">
-          <Link to="/admin">Painel Administrativo</Link> {'>'} Relatórios
-        </nav>
+        <h1>Relatórios</h1>
+        <div className="header-actions">
+          <div className="back-container">
+            <Link to="/dashboard" className="back-button">
+              <i className="fas fa-arrow-left"></i> VOLTAR
+            </Link>
+          </div>
+        </div>
       </header>
 
       <main className="reports-content">
