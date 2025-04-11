@@ -61,6 +61,16 @@
   --z-dropdown: 10;
   --z-modal: 20;
   --z-tooltip: 30;
+  
+  /* Breakpoints */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  
+  /* Container */
+  --container-padding: var(--space-md);
+  --container-max-width: 1200px;
 }
 
 /* ===== Reset & Base Styles ===== */
@@ -131,9 +141,9 @@ a:hover {
 /* ===== Layout ===== */
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: var(--container-max-width);
   margin: 0 auto;
-  padding: 0 var(--space-md);
+  padding: 0 var(--container-padding);
 }
 
 .section {
@@ -403,4 +413,156 @@ input::placeholder {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* ===== Responsive Utilities ===== */
+.hide-sm { display: none !important; }
+.hide-md { display: none !important; }
+.hide-lg { display: none !important; }
+
+@media (min-width: 640px) {
+  .hide-sm { display: block !important; }
+  .show-sm { display: none !important; }
+}
+
+@media (min-width: 768px) {
+  .hide-md { display: block !important; }
+  .show-md { display: none !important; }
+}
+
+@media (min-width: 1024px) {
+  .hide-lg { display: block !important; }
+  .show-lg { display: none !important; }
+}
+
+/* ===== Responsive Grid ===== */
+.grid {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (min-width: 640px) {
+  .sm\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .sm\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .sm\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (min-width: 768px) {
+  .md\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .md\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .md\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .lg\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .lg\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ===== Responsive Typography ===== */
+@media (max-width: 768px) {
+  :root {
+    --font-size-4xl: 2rem;
+    --font-size-3xl: 1.75rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-xl: 1.25rem;
+    --font-size-lg: 1.125rem;
+    --font-size-md: 1rem;
+    --font-size-sm: 0.875rem;
+    --font-size-xs: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --font-size-4xl: 1.75rem;
+    --font-size-3xl: 1.5rem;
+    --font-size-2xl: 1.25rem;
+    --font-size-xl: 1.125rem;
+    --font-size-lg: 1rem;
+    --font-size-md: 0.875rem;
+    --font-size-sm: 0.75rem;
+    --font-size-xs: 0.625rem;
+  }
+}
+
+/* ===== Responsive Container ===== */
+@media (min-width: 640px) {
+  .container {
+    padding: 0 var(--space-lg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 var(--space-xl);
+  }
+}
+
+/* ===== Responsive Tables ===== */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ===== Mobile Navigation ===== */
+.mobile-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--bg-card);
+  padding: var(--space-sm);
+  display: none;
+  z-index: var(--z-dropdown);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .mobile-nav {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .mobile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: var(--font-size-xs);
+    padding: var(--space-xs);
+  }
+  
+  .mobile-nav-item.active {
+    color: var(--accent-pink);
+  }
+  
+  .mobile-nav-icon {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-xs);
+  }
+}
+
+/* ===== Touch Targets ===== */
+@media (max-width: 768px) {
+  .btn, 
+  .btn-login,
+  input[type="button"],
+  input[type="submit"] {
+    min-height: 44px;
+    padding: var(--space-md) var(--space-lg);
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    min-height: 44px;
+  }
 } 

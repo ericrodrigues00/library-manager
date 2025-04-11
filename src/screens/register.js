@@ -8,7 +8,8 @@ const Register = () => {
     email: '',
     registration: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    userType: 'aluno' // Valor padrão
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState(null);
@@ -32,7 +33,8 @@ const Register = () => {
         email: '',
         registration: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        userType: 'aluno'
       });
     } catch (error) {
       setMessage({
@@ -102,6 +104,23 @@ const Register = () => {
               placeholder="Digite sua matrícula"
               required
             />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="userType">Tipo de Usuário</label>
+            <select
+              id="userType"
+              name="userType"
+              value={formData.userType}
+              onChange={handleChange}
+              required
+              className="form-select"
+            >
+              <option value="aluno">Aluno</option>
+              <option value="professor">Professor</option>
+              <option value="bibliotecario">Bibliotecário</option>
+              <option value="administrador">Administrador</option>
+            </select>
           </div>
 
           <div className="form-group">

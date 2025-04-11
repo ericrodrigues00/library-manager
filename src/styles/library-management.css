@@ -8,7 +8,7 @@
 }
 
 .management-content {
-  max-width: 1400px;
+  max-width: var(--container-max-width);
   margin: 0 auto;
   padding: var(--space-lg);
   background-color: var(--bg-card);
@@ -56,6 +56,14 @@
   margin-bottom: var(--space-xl);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   padding-bottom: var(--space-sm);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.management-tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .tab {
@@ -68,6 +76,7 @@
   font-weight: 500;
   cursor: pointer;
   transition: all var(--transition-fast);
+  white-space: nowrap;
 }
 
 .tab:hover {
@@ -90,8 +99,14 @@
 /* ===== Materials Section ===== */
 .materials-section {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr;
   gap: var(--space-xl);
+}
+
+@media (min-width: 768px) {
+  .materials-section {
+    grid-template-columns: 1fr 2fr;
+  }
 }
 
 .add-material {
@@ -184,6 +199,10 @@
 .materials-table {
   width: 100%;
   overflow-x: auto;
+  margin-top: 1rem;
+  background: var(--surface-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
 }
 
 .materials-table table {
@@ -191,27 +210,21 @@
   border-collapse: collapse;
 }
 
-.materials-table th {
-  background-color: var(--bg-elevated);
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: var(--space-md);
+.materials-table th,
+.materials-table td {
+  padding: 1rem;
   text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--border-color);
 }
 
-.materials-table td {
-  padding: var(--space-md);
-  color: var(--text-primary);
-  font-size: var(--font-size-sm);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+.materials-table th {
+  background: var(--surface-color-alt);
+  font-weight: 600;
+  color: var(--text-color);
 }
 
 .materials-table tr:hover {
-  background-color: rgba(191, 73, 160, 0.05);
+  background: var(--surface-color-hover);
 }
 
 .btn-edit, .btn-delete {
@@ -268,13 +281,6 @@
 
 /* ===== Responsive Design ===== */
 @media (max-width: 1024px) {
-  .materials-section {
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
-  }
-}
-
-@media (max-width: 768px) {
   .library-management-container {
     padding: var(--space-md);
   }
@@ -302,9 +308,92 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .management-header h1 {
     font-size: var(--font-size-2xl);
+  }
+  
+  .materials-table {
+    display: block;
+  }
+  
+  .materials-table thead {
+    display: none;
+  }
+  
+  .materials-table tbody,
+  .materials-table tr,
+  .materials-table td {
+    display: block;
+    width: 100%;
+  }
+  
+  .materials-table tr {
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: var(--surface-color);
+  }
+  
+  .materials-table td {
+    text-align: right;
+    padding: 0.75rem;
+    position: relative;
+    padding-left: 50%;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .materials-table td:last-child {
+    border-bottom: none;
+  }
+  
+  .materials-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0.75rem;
+    width: 45%;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-color-muted);
+  }
+  
+  .materials-table td[data-label="Ações"] {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+  
+  .materials-table .btn-edit,
+  .materials-table .btn-delete {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .form-group input {
+    font-size: var(--font-size-sm);
+  }
+  
+  .tab {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--font-size-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .library-management-container {
+    padding: var(--space-sm);
+  }
+  
+  .management-content {
+    padding: var(--space-sm);
+  }
+  
+  .management-header h1 {
+    font-size: var(--font-size-xl);
+  }
+  
+  .breadcrumb {
+    font-size: var(--font-size-sm);
   }
   
   .materials-table {
@@ -312,6 +401,136 @@
   }
   
   .materials-table th, .materials-table td {
+    padding: var(--space-xs);
+  }
+  
+  .btn-add {
     padding: var(--space-sm);
+    font-size: var(--font-size-sm);
+  }
+  
+  .form-group label {
+    font-size: var(--font-size-xs);
+  }
+  
+  .form-group input {
+    padding: var(--space-xs) var(--space-sm);
+  }
+}
+
+/* ===== Mobile Navigation ===== */
+.mobile-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--bg-card);
+  padding: var(--space-sm);
+  display: none;
+  z-index: var(--z-dropdown);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .mobile-nav {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .mobile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: var(--font-size-xs);
+    padding: var(--space-xs);
+  }
+  
+  .mobile-nav-item.active {
+    color: var(--accent-pink);
+  }
+  
+  .mobile-nav-icon {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-xs);
+  }
+  
+  /* Add padding to main content to account for fixed mobile nav */
+  .library-management-container {
+    padding-bottom: calc(var(--space-xl) + 60px);
+  }
+}
+
+/* ===== Mobile Form View ===== */
+@media (max-width: 480px) {
+  .material-form {
+    gap: var(--space-sm);
+  }
+  
+  .form-group {
+    gap: var(--space-xs);
+  }
+  
+  .form-group label {
+    font-size: var(--font-size-xs);
+  }
+  
+  .form-group input {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--font-size-sm);
+  }
+  
+  .btn-add {
+    width: 100%;
+    padding: var(--space-sm);
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* ===== Mobile Tabs ===== */
+@media (max-width: 480px) {
+  .management-tabs {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-xs);
+  }
+  
+  .tab {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* ===== Mobile Header ===== */
+@media (max-width: 480px) {
+  .management-header {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
+  }
+  
+  .management-header h1 {
+    font-size: var(--font-size-lg);
+  }
+  
+  .breadcrumb {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* ===== Mobile Panel ===== */
+@media (max-width: 480px) {
+  .management-panel {
+    padding: var(--space-sm);
+    border-radius: var(--radius-md);
+  }
+  
+  .add-material, .materials-list {
+    padding: var(--space-sm);
+    border-radius: var(--radius-md);
+  }
+  
+  .add-material h2, .materials-list h2 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-md);
   }
 } 

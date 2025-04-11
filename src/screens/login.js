@@ -112,50 +112,11 @@ function Login() {
           
         </form>
 
-        <div className="login-help">
-          <p>Contas de teste disponíveis:</p>
-          <ul>
-            <li>Admin: admin@biblioteca.com / admin123</li>
-            <li>Bibliotecário: bibliotecario@biblioteca.com / bib123</li>
-            <li>Professor: professor@escola.com / prof123</li>
-            <li>Aluno: aluno@escola.com / alu123</li>
-            <li>Funcionário: funcionario@escola.com / func123</li>
-          </ul>
-        </div>
+        
       </div>
 
       {/* Debug Panel */}
-      <div className={`debug-panel ${isDebugPanelCollapsed ? 'collapsed' : ''}`}>
-        <div className="debug-panel-header">
-          <span className="debug-panel-title">Debug Panel</span>
-          <button 
-            className="debug-toggle"
-            onClick={() => setIsDebugPanelCollapsed(!isDebugPanelCollapsed)}
-          >
-            {isDebugPanelCollapsed ? '▲' : '▼'}
-          </button>
-        </div>
-        <div className="debug-links">
-          {debugLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className="debug-link"
-              onClick={() => {
-                // Auto-login with admin credentials for testing
-                const adminUser = {
-                  email: 'admin@biblioteca.com',
-                  password: 'admin123',
-                  role: 'admin'
-                };
-                login(adminUser);
-              }}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
-      </div>
+     
     </div>
   );
 }

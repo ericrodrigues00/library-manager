@@ -235,14 +235,14 @@ function LibraryManagement() {
                     <tbody>
                       {materials.map(material => (
                         <tr key={material.id}>
-                          <td>{material.title}</td>
-                          <td>{material.author}</td>
-                          <td>{material.isbn}</td>
-                          <td>{material.category}</td>
-                          <td>{material.copies}</td>
-                          <td>{material.available}</td>
-                          <td>{material.location}</td>
-                          <td>
+                          <td data-label="Título">{material.title}</td>
+                          <td data-label="Autor">{material.author}</td>
+                          <td data-label="ISBN">{material.isbn}</td>
+                          <td data-label="Categoria">{material.category}</td>
+                          <td data-label="Cópias">{material.copies}</td>
+                          <td data-label="Disponíveis">{material.available}</td>
+                          <td data-label="Localização">{material.location}</td>
+                          <td data-label="Ações">
                             <button 
                               className="btn-edit"
                               onClick={() => {/* TODO: Implement edit */}}
