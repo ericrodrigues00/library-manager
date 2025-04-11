@@ -1,0 +1,317 @@
+/* Library Management Styles - Extends global.css */
+
+/* ===== Library Management Layout ===== */
+.library-management-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a2e 100%);
+  padding: var(--space-lg);
+}
+
+.management-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--space-lg);
+  background-color: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+/* ===== Library Header ===== */
+.management-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.management-header h1 {
+  font-size: var(--font-size-3xl);
+  color: var(--accent-pink);
+  font-weight: 700;
+}
+
+.breadcrumb {
+  color: var(--text-secondary);
+  font-size: var(--font-size-md);
+}
+
+.breadcrumb a {
+  color: var(--accent-blue);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.breadcrumb a:hover {
+  color: var(--accent-pink);
+}
+
+/* ===== Management Tabs ===== */
+.management-tabs {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: var(--space-sm);
+}
+
+.tab {
+  padding: var(--space-sm) var(--space-md);
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tab:hover {
+  color: var(--accent-pink);
+}
+
+.tab.active {
+  color: var(--accent-pink);
+  border-bottom: 2px solid var(--accent-pink);
+}
+
+/* ===== Management Panel ===== */
+.management-panel {
+  background-color: var(--bg-elevated);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ===== Materials Section ===== */
+.materials-section {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--space-xl);
+}
+
+.add-material {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.add-material h2 {
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.material-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.form-group label {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.form-group input {
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--bg-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+  transition: all var(--transition-fast);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--accent-pink);
+  box-shadow: 0 0 0 2px rgba(191, 73, 160, 0.2);
+}
+
+.btn-add {
+  padding: var(--space-md);
+  background-color: var(--accent-pink);
+  color: var(--text-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-top: var(--space-md);
+}
+
+.btn-add:hover {
+  background-color: #a03d85;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-add:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ===== Materials List ===== */
+.materials-list {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.materials-list h2 {
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.materials-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.materials-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.materials-table th {
+  background-color: var(--bg-elevated);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--space-md);
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.materials-table td {
+  padding: var(--space-md);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.materials-table tr:hover {
+  background-color: rgba(191, 73, 160, 0.05);
+}
+
+.btn-edit, .btn-delete {
+  padding: var(--space-xs) var(--space-sm);
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-right: var(--space-xs);
+}
+
+.btn-edit:hover {
+  background-color: rgba(115, 159, 217, 0.1);
+  color: var(--accent-blue);
+  border-color: var(--accent-blue);
+}
+
+.btn-delete:hover {
+  background-color: rgba(255, 107, 107, 0.1);
+  color: var(--error);
+  border-color: var(--error);
+}
+
+.btn-edit:disabled, .btn-delete:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ===== Categories Section ===== */
+.categories-section {
+  padding: var(--space-lg);
+}
+
+.categories-section h2 {
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+}
+
+/* ===== Settings Section ===== */
+.settings-section {
+  padding: var(--space-lg);
+}
+
+.settings-section h2 {
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 1024px) {
+  .materials-section {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+}
+
+@media (max-width: 768px) {
+  .library-management-container {
+    padding: var(--space-md);
+  }
+  
+  .management-content {
+    padding: var(--space-md);
+  }
+  
+  .management-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+  }
+  
+  .management-tabs {
+    flex-wrap: wrap;
+  }
+  
+  .management-panel {
+    padding: var(--space-md);
+  }
+  
+  .add-material, .materials-list {
+    padding: var(--space-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .management-header h1 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .materials-table {
+    font-size: var(--font-size-xs);
+  }
+  
+  .materials-table th, .materials-table td {
+    padding: var(--space-sm);
+  }
+} 
