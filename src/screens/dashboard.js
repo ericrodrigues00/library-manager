@@ -1,8 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import '../styles/dashboard.css';
 import '../styles/global.css';
+
 const Dashboard = () => {
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+  
   // Mock data for demonstration
   const stats = [
     {
@@ -79,8 +84,8 @@ const Dashboard = () => {
   ];
 
   const handleLogout = () => {
-    // Implement the logout logic here
-    console.log('Logout clicked');
+    logout();
+    navigate('/login');
   };
 
   return (

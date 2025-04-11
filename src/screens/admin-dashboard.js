@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import '../styles/admin-dashboard.css';
 
 const AdminDashboard = () => {
@@ -11,6 +12,7 @@ const AdminDashboard = () => {
     systemAlerts: 0
   });
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   useEffect(() => {
     // Simulate API call to fetch dashboard data
@@ -36,7 +38,7 @@ const AdminDashboard = () => {
   }, []);
 
   const handleLogout = () => {
-    // Add any logout logic here (clear tokens, etc.)
+    logout();
     navigate('/login');
   };
 

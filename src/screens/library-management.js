@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import '../styles/library-management.css';
 import '../styles/global.css';
 
@@ -8,9 +9,11 @@ import '../styles/global.css';
 
 function LibraryManagement() {
   const [activeTab, setActiveTab] = useState('materials');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const [materials, setMaterials] = useState([
     {
@@ -93,7 +96,8 @@ function LibraryManagement() {
   };
 
   const handleLogout = () => {
-    // Implement the logout logic here
+    logout();
+    navigate('/login');
   };
 
   return (

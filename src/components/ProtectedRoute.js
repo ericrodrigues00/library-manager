@@ -11,13 +11,12 @@ function ProtectedRoute({ children, allowedRoles }) {
 
   if (allowedRoles && !allowedRoles.includes(currentUser.role)) {
     // Redirect to appropriate dashboard based on role
-    switch (currentUser.role) {
-      case 'admin':
-        return <Navigate to="/admin" />;
-      case 'librarian':
-        return <Navigate to="/library-management" />;
-      default:
-        return <Navigate to="/dashboard" />;
+    if (currentUser.role === 'admin') {
+      return <Navigate to="/admin" />;
+    } else if (currentUser.role === 'librarian') {
+      return <Navigate to="/library-management" />;
+    } else {
+      return <Navigate to="/dashboard" />;
     }
   }
 

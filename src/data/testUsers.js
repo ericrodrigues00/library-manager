@@ -26,7 +26,7 @@ export const testUsers = {
     name: 'Professor João Silva',
     email: 'professor@escola.com',
     password: 'prof123',
-    role: 'teacher',
+    role: 'admin',
     registration: '2024003',
     phone: '(11) 97777-7777',
     department: 'Matemática',
