@@ -67,7 +67,11 @@ const ForgotPassword = () => {
         </form>
         
         <div className="forgot-password-links">
-          <Link to="/login">Voltar para o Login</Link>
+          <div className="back-container">
+            <Link to="/login" className="back-button">
+              <i className="fas fa-arrow-left"></i> VOLTAR
+            </Link>
+          </div>
         </div>
       </div>
     </div>

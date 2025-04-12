@@ -13,16 +13,16 @@ function MyLoans() {
       id: 1,
       title: "Introdução à Programação",
       author: "João Silva",
-      borrowedDate: "2024-01-15",
-      dueDate: "2024-02-15",
+      borrowedDate: "20/03/2025",
+      dueDate: "20/04/2025",
       status: "active"
     },
     {
       id: 2,
       title: "Banco de Dados Avançado",
       author: "Maria Santos",
-      borrowedDate: "2024-01-10",
-      dueDate: "2024-02-10",
+      borrowedDate: "02/04/2025",
+      dueDate: "23/05/2025",
       status: "active"
     }
   ];
@@ -130,11 +130,7 @@ function MyLoans() {
           </div>
         </section>
 
-        <section className="loan-history-link">
-          <Link to="/loan-history" className="btn-view-history">
-            Ver Histórico Completo
-          </Link>
-        </section>
+       
       </main>
     </div>
   );

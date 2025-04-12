@@ -86,7 +86,13 @@ function MaterialDetails() {
     <div className="material-details-container">
       <header className="details-header">
         <h1>Detalhes do Material</h1>
-        <Link to="/search" className="back-link">Voltar à Busca</Link>
+        <div className="header-actions">
+          <div className="back-container">
+            <Link to="/search" className="back-button">
+              <i className="fas fa-arrow-left"></i> VOLTAR
+            </Link>
+          </div>
+        </div>
       </header>
 
       <main className="material-content">

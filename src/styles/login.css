@@ -316,61 +316,161 @@
   position: fixed;
   bottom: 0;
   right: 0;
+  width: 320px;
   background-color: var(--bg-card);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-lg) 0 0 0;
-  padding: var(--space-md);
-  max-width: 300px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   box-shadow: var(--shadow-lg);
+  transition: transform 0.3s ease;
   z-index: 1000;
-}
-
-.debug-panel-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--space-sm);
-}
-
-.debug-panel-title {
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  color: var(--accent-pink);
-}
-
-.debug-toggle {
-  background: none;
-  border: none;
-  color: var(--text-secondary);
-  cursor: pointer;
-  font-size: var(--font-size-sm);
-  padding: var(--space-xs);
-}
-
-.debug-links {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-}
-
-.debug-link {
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: var(--font-size-sm);
-  padding: var(--space-xs);
-  border-radius: var(--radius-sm);
-  transition: all var(--transition-fast);
-}
-
-.debug-link:hover {
-  background-color: var(--bg-elevated);
-  color: var(--accent-blue);
 }
 
 .debug-panel.collapsed {
   transform: translateY(calc(100% - 40px));
 }
 
-.debug-panel.collapsed .debug-links {
-  display: none;
+.debug-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background-color: var(--bg-elevated);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.debug-panel-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.debug-panel-title::before {
+  content: '🛠️';
+  font-size: 1.2em;
+}
+
+.debug-toggle {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 0.25rem;
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.debug-toggle:hover {
+  transform: scale(1.2);
+}
+
+.debug-links {
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.debug-links::-webkit-scrollbar {
+  width: 8px;
+}
+
+.debug-links::-webkit-scrollbar-track {
+  background: var(--bg-card);
+  border-radius: 4px;
+}
+
+.debug-links::-webkit-scrollbar-thumb {
+  background: var(--accent-pink);
+  border-radius: 4px;
+}
+
+.debug-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  background-color: var(--bg-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.debug-link:hover {
+  background-color: var(--accent-pink);
+  color: white;
+  transform: translateX(4px);
+}
+
+.debug-link-icon {
+  font-size: 1.2em;
+  min-width: 1.5em;
+  text-align: center;
+}
+
+.debug-link-label {
+  flex: 1;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+/* Grupos de links */
+.debug-links .debug-link[href^="/login"],
+.debug-links .debug-link[href^="/register"],
+.debug-links .debug-link[href^="/forgot-password"] {
+  background-color: rgba(255, 152, 0, 0.1);
+  border-color: #ff9800;
+}
+
+.debug-links .debug-link[href^="/admin"],
+.debug-links .debug-link[href^="/library-management"],
+.debug-links .debug-link[href^="/backup-management"],
+.debug-links .debug-link[href^="/reports"] {
+  background-color: rgba(191, 73, 160, 0.1);
+  border-color: var(--accent-pink);
+}
+
+.debug-links .debug-link[href^="/my"],
+.debug-links .debug-link[href^="/account"],
+.debug-links .debug-link[href^="/notifications"] {
+  background-color: rgba(99, 143, 192, 0.1);
+  border-color: var(--accent-blue);
+}
+
+.debug-links .debug-link[href^="/search"],
+.debug-links .debug-link[href^="/material"],
+.debug-links .debug-link[href^="/borrow"],
+.debug-links .debug-link[href^="/return"] {
+  background-color: rgba(81, 207, 102, 0.1);
+  border-color: var(--success);
+}
+
+.debug-links .debug-link[href="/dashboard"] {
+  background-color: rgba(103, 58, 183, 0.1);
+  border-color: #673ab7;
+}
+
+/* Responsive Debug Panel */
+@media (max-width: 768px) {
+  .debug-panel {
+    width: 280px;
+  }
+  
+  .debug-link {
+    padding: 0.6rem 0.8rem;
+  }
+  
+  .debug-link-icon {
+    font-size: 1em;
+  }
+  
+  .debug-link-label {
+    font-size: 0.8em;
+  }
 }

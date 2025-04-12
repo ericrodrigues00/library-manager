@@ -44,7 +44,13 @@ function Search() {
     <div className="search-container">
       <header className="search-header">
         <h1>Buscar Material</h1>
-        <Link to="/dashboard" className="back-link">Voltar ao Painel</Link>
+        <div className="header-actions">
+          <div className="back-container">
+            <Link to="/dashboard" className="back-button">
+              <i className="fas fa-arrow-left"></i> VOLTAR
+            </Link>
+          </div>
+        </div>
       </header>
 
       <main className="search-content">
