@@ -115,11 +115,10 @@ function Login() {
         <div className="login-help">
           <p>Contas de teste disponíveis:</p>
           <ul>
-            <li>Admin: admin@biblioteca.com / admin123</li>
-            <li>Bibliotecário: bibliotecario@biblioteca.com / bib123</li>
-            <li>Professor: professor@escola.com / prof123</li>
-            <li>Aluno: aluno@escola.com / alu123</li>
-            <li>Funcionário: funcionario@escola.com / func123</li>
+            
+            <li>Admin: professor@escola.com / prof123</li>
+            <li>Usuário Comum: aluno@escola.com / alu123</li>
+        
           </ul>
         </div>
       </div>
